@@ -7,6 +7,12 @@ if [ "$(docker ps -q -f name=samplerunning)" ]; then
   docker rm samplerunning
 fi
 
+# check for tempdir and delete it
+if [ -d tempdir ]; then
+	rm -rf tempdir
+fi
+
+
 mkdir tempdir
 mkdir tempdir/templates
 mkdir tempdir/static
