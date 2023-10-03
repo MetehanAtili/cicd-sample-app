@@ -1,8 +1,12 @@
 #!/bin/bash
 set -euo pipefail
-if [ -d tempdir ]; then
-  rm -rf tempdir
+
+# if "samplerunning" container is running, stop and delete it
+if [ "$(docker ps -q -f name=samplerunning)" ]; then
+  docker stop samplerunning
+  docker rm samplerunning
 fi
+
 mkdir tempdir
 mkdir tempdir/templates
 mkdir tempdir/static
